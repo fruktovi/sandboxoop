@@ -13,7 +13,7 @@ public class DeburaAlgorithm implements MathFunction{
         this.controlPoints = Arrays.copyOf(controlPoints, controlPoints.length);
         this.SplineDegree = SplineDegree;
     }
-    public double Algorithm(double x) {
+    private double Algorithm(double x) {
         double[] d = new double[segmentIndex + 1];
         for (int i = 0; i <= segmentIndex; ++i) {
             d[i] = controlPoints[i + SplineDegree - segmentIndex];
