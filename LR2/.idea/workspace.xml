@@ -5,10 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="aca59cb9-56af-4b59-80c3-b0fd2313c5ed" name="Changes" comment="IdentityFunction class is added">
-      <change afterPath="$PROJECT_DIR$/src/main/java/ru/ssau/tk/fruktovi/sandboxoop/functions/CompositeFunction.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/ru/ssau/tk/fruktovi/sandboxoop/functions/CompositeFunctionTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/ssau/tk/fruktovi/sandboxoop/functions/DeburaAlgorithm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/ssau/tk/fruktovi/sandboxoop/functions/DeburaAlgorithm.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/ssau/tk/fruktovi/sandboxoop/functions/ConstantFunction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/ssau/tk/fruktovi/sandboxoop/functions/ConstantFunction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/ru/ssau/tk/fruktovi/sandboxoop/functions/CompositeFunctionTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ru/ssau/tk/fruktovi/sandboxoop/functions/CompositeFunctionTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -64,7 +63,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit3",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit3": "junit.framework.TestCase",
-    "git-widget-placeholder": "main",
+    "git-widget-placeholder": "X-branch",
     "kotlin-language-version-configured": "true",
     "settings.editor.selected.configurable": "vcs.Git"
   }
@@ -118,7 +117,15 @@
       <option name="project" value="LOCAL" />
       <updated>1728486232834</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="composite func done">
+      <option name="closed" value="true" />
+      <created>1728499238388</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1728499238388</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -126,6 +133,7 @@
     <MESSAGE value="MathFunction interface is added" />
     <MESSAGE value="IdentityFunction class is added" />
     <MESSAGE value="." />
-    <option name="LAST_COMMIT_MESSAGE" value="." />
+    <MESSAGE value="composite func done" />
+    <option name="LAST_COMMIT_MESSAGE" value="composite func done" />
   </component>
 </project>

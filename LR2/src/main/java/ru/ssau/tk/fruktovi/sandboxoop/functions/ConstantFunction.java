@@ -1,7 +1,7 @@
 package ru.ssau.tk.fruktovi.sandboxoop.functions;
 
 public class ConstantFunction {
-    private final double constant;
+    private double constant;
 
     public ConstantFunction(double constant) {
         this.constant = constant;
