@@ -12,7 +12,7 @@ import org.junit.jupiter.api.Test;
             CompositeFunction compositeFunction = new CompositeFunction(firstFunction, secondFunction);
 
             CompositeFunction doubleCompositeFunction = new CompositeFunction(compositeFunction, secondFunction);
-            Assertions.assertEquals(2, doubleCompositeFunction.apply(8));
+            Assertions.assertEquals(4096, doubleCompositeFunction.apply(8));
             Assertions.assertEquals(0, doubleCompositeFunction.apply(0));
         }
     }
