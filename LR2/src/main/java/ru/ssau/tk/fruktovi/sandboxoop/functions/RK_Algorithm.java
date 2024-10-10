@@ -1,42 +1,29 @@
 package ru.ssau.tk.fruktovi.sandboxoop.functions;
 
+import java.util.function.BiFunction;
+
 public class RK_Algorithm implements MathFunction {
+
+    private final BiFunction<Double, Double, Double> differentialEquation; //  дифференциальное уравнение
     private final double x0;
     private final double y0;
-    private final double h;
 
 
-    public RK_Algorithm(double x0, double y0, double h) {
+    public RK_Algorithm(BiFunction<Double, Double, Double> differentialEquation, double x0, double y0) {
+        this.differentialEquation = differentialEquation;
         this.x0 = x0;
         this.y0 = y0;
-        this.h = h;
     }
-
-
-    public static double f(double x, double y) {
-        return x + y;
-    }
-
-    // Runge-Kutta 4th order method
-    public double rungeKutta(double x, double y) {
-        double k1 = h * f(x, y);
-        double k2 = h * f(x + 0.5 * h, y + 0.5 * k1);
-        double k3 = h * f(x + 0.5 * h, y + 0.5 * k2);
-        double k4 = h * f(x + h, y + k3);
-        return y + (1.0 / 6.0) * (k1 + 2 * k2 + 2 * k3 + k4);
-    }
-
 
     @Override
-    public double apply(double x) {
-        double currentX = x0;
-        double currentY = y0;
+    public double apply(double step) {
+        double k1, k2, k3, k4;
 
-        while (currentX < x) {
-            currentY = rungeKutta(currentX, currentY);
-            currentX += h;
-        }
+        k1 = this.differentialEquation.apply(this.x0, this.y0);
+        k2 = this.differentialEquation.apply(this.x0+step/2, this.y0+step*k1/2);
+        k3 = this.differentialEquation.apply(this.x0+step/2, this.y0+step*k2/2);
+        k4 = this.differentialEquation.apply(this.x0+step, this.y0+step*k3);
 
-        return currentY;
+        return (this.y0 + (step/6) * (k1+2*k2+2*k3+k4));
     }
 }
