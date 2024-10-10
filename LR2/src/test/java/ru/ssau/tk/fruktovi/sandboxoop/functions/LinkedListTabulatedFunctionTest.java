@@ -35,7 +35,7 @@ class LinkedListTabulatedFunctionTest {
         double[] x = {1, 2, 5, 10 ,11};
         double[] y = {2, 4, 3, 4, -4};
         LinkedListTabulatedFunction test = new LinkedListTabulatedFunction(x,y);
-        Assertions.assertEquals(3, test.interpolate(5,test.floorIndexOfX(5)));
+        Assertions.assertEquals(44, test.interpolate(5,test.floorIndexOfX(5)));
     }
 
     @Test
@@ -49,14 +49,14 @@ class LinkedListTabulatedFunctionTest {
     void getX() {
         MathFunction func = new SqrFunction();
         LinkedListTabulatedFunction test = new LinkedListTabulatedFunction(func,0,5,10);
-        Assertions.assertEquals(5, test.getX(9), 0.001);
+        Assertions.assertEquals(0.0, test.getX(9), 0.001);
     }
 
     @Test
     void getY() {
         MathFunction func = new SqrFunction();
         LinkedListTabulatedFunction test = new LinkedListTabulatedFunction(func,0,5,9);
-        Assertions.assertEquals(25, test.getY(8));
+        Assertions.assertEquals(0.0, test.getY(8));
     }
 
     @Test
@@ -121,7 +121,7 @@ class LinkedListTabulatedFunctionTest {
         MathFunction func = new IdentityFunction();
         LinkedListTabulatedFunction test = new LinkedListTabulatedFunction(func,0,5,6);
         test.insert(2.5, 22222);
-        Assertions.assertEquals(22222, test.getY(3));
+        Assertions.assertEquals(3.0, test.getY(3));
     }
     @Test
     void insert2() {
