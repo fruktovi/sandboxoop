@@ -5,9 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="aca59cb9-56af-4b59-80c3-b0fd2313c5ed" name="Changes" comment="IdentityFunction class is added">
+      <change afterPath="$PROJECT_DIR$/src/main/java/ru/ssau/tk/fruktovi/sandboxoop/functions/TabulatedFunction.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/ssau/tk/fruktovi/sandboxoop/functions/ConstantFunction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/ssau/tk/fruktovi/sandboxoop/functions/ConstantFunction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/ru/ssau/tk/fruktovi/sandboxoop/functions/CompositeFunctionTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ru/ssau/tk/fruktovi/sandboxoop/functions/CompositeFunctionTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -17,16 +16,16 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Interface" />
         <option value="Class" />
         <option value="JUnit3 Test Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$/.." value="X-branch" />
+        <entry key="$PROJECT_DIR$/.." value="main" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
@@ -57,6 +56,7 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "Application.App.executor": "Run",
+    "JUnit.CompositeFunctionTest.executor": "Run",
     "JUnit.DeburaAlgorithmTest.executor": "Run",
     "JUnit.IdentityFunctionTest.executor": "Run",
     "Maven. [org.apache.maven.plugins:maven-archetype-plugin:RELEASE:generate].executor": "Run",
