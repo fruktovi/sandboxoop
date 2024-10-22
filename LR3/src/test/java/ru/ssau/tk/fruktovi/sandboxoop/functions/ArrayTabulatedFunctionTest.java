@@ -115,4 +115,41 @@ public class ArrayTabulatedFunctionTest {
     public void testSetYInvalidIndex() {
         assertThrows(IndexOutOfBoundsException.class, () -> function.setY(3, 4.0));
     }
+
+    @Test
+    public void testToString() {
+        double[] xValues = {1, 2, 3};
+        double[] yValues = {2, 4, 6};
+        ArrayTabulatedFunction function = new ArrayTabulatedFunction(xValues, yValues);
+        assertEquals("ArrayTabulatedFunction:\nx: 1.0, y: 2.0\nx: 2.0, y: 4.0\nx: 3.0, y: 6.0\n", function.toString());
+    }
+
+    @Test
+    public void testEquals() {
+        double[] xValues = {1, 2, 3};
+        double[] yValues = {2, 4, 6};
+        ArrayTabulatedFunction function1 = new ArrayTabulatedFunction(xValues, yValues);
+        ArrayTabulatedFunction function2 = new ArrayTabulatedFunction(xValues, yValues);
+        assertEquals(function1, function2);
+    }
+    @Test
+    public void testHashCode() {
+        double[] xValues = {1, 2, 3};
+        double[] yValues = {2, 4, 6};
+        ArrayTabulatedFunction function1 = new ArrayTabulatedFunction(xValues, yValues);
+        ArrayTabulatedFunction function2 = new ArrayTabulatedFunction(xValues, yValues);
+        assertEquals(function1.hashCode(), function2.hashCode());
+    }
+
+    @Test
+    public void testClone() {
+        double[] xValues = {1.0, 2.0, 3.0};
+        double[] yValues = {2.0, 4.0, 6.0};
+        ArrayTabulatedFunction function = new ArrayTabulatedFunction(xValues, yValues);
+        ArrayTabulatedFunction clonedFunction = function.clone();
+
+        assertEquals(function, clonedFunction);
+        assertNotSame(function, clonedFunction);
+    }
+
 }

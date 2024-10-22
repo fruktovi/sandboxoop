@@ -171,4 +171,43 @@ public class ArrayTabulatedFunction extends AbstractTabulatedFunction implements
         System.arraycopy(yTempFull, 0, yValues, 0, count - 1);
         --count;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true; // Сравниваем ссылки
+        if (!(o instanceof ArrayTabulatedFunction)) return false; // Проверка типа
+        ArrayTabulatedFunction other = (ArrayTabulatedFunction) o; // Приведение типа
+
+        return Arrays.equals(this.xValues, other.xValues) && Arrays.equals(this.yValues, other.yValues); // Сравнение массивов
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder builder = new StringBuilder("ArrayTabulatedFunction:\n");
+        for (int i = 0; i < count; i++) {
+            builder.append("x: ").append(xValues[i])
+                    .append(", y: ").append(yValues[i]).append("\n");
+        }
+        return builder.toString();
+    }
+
+    @Override
+    public int hashCode() {
+        int result = Arrays.hashCode(xValues);
+        result = 31 * result + Arrays.hashCode(yValues);
+        return result;
+    }
+
+
+    @Override
+    public ArrayTabulatedFunction clone() {
+        try {
+            ArrayTabulatedFunction cloned = (ArrayTabulatedFunction) super.clone();
+            cloned.xValues = xValues.clone();
+            cloned.yValues = yValues.clone();
+            return cloned;
+        } catch (CloneNotSupportedException e) {
+            throw new AssertionError(); // Не должно случаться
+        }
+    }
 }
