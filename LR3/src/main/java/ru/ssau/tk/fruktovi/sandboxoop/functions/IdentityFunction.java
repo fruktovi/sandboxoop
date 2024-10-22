@@ -19,7 +19,8 @@ public class IdentityFunction implements MathFunction {
 
     @Override
     public int hashCode() {
-        return 31; // Можно использовать любое фиксированное число, так как все экземпляры считаются равными
+        int hash = 31;  // Можно использовать любое фиксированное число, так как все экземпляры считаются равными
+        return hash;
     }
 
     @Override
