@@ -201,13 +201,11 @@ public class ArrayTabulatedFunction extends AbstractTabulatedFunction implements
 
     @Override
     public ArrayTabulatedFunction clone() {
-        try {
-            ArrayTabulatedFunction cloned = (ArrayTabulatedFunction) super.clone();
-            cloned.xValues = xValues.clone();
-            cloned.yValues = yValues.clone();
-            return cloned;
-        } catch (CloneNotSupportedException e) {
-            throw new AssertionError(); // Не должно случаться
-        }
+
+        ArrayTabulatedFunction clone = new ArrayTabulatedFunction(
+                Arrays.copyOf(this.xValues, this.xValues.length),
+                Arrays.copyOf(this.yValues, this.yValues.length)
+        );
+        return clone;
     }
 }
