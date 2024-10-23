@@ -243,4 +243,100 @@ public class LinkedListTabulatedFunction extends AbstractTabulatedFunction imple
         }
         count++;
     }
+    @Override
+    public String toString() {
+        StringBuilder result = new StringBuilder();
+        Node current = head;
+        for (int i = 0; i < count; i++) {
+            result.append(current.toString());
+            if (i < count - 1) {
+                result.append("; "); // Добавляем "; " между точками
+            }
+            current = current.next;
+        }
+        return result.toString();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        LinkedListTabulatedFunction that = (LinkedListTabulatedFunction) o;
+        if (this.count != that.count) return false;
+        Node thisNode = this.head;
+        Node thatNode = that.head;
+        for (int i = 0; i < count; i++) {
+            if (!thisNode.equals(thatNode)) return false;
+            thisNode = thisNode.next;
+            thatNode = thatNode.next;
+        }
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 1;
+        Node current = head;
+        for (int i = 0; i < count; i++) {
+            hash = 31 * hash + current.hashCode();
+            current = current.next;
+        }
+        return hash;
+    }
+    public LinkedListTabulatedFunction() {
+        this.head = null;
+        this.nodes = new Node[0];
+        this.count = 0;
+    }
+
+    public void add(double xValue, double yValue) {
+        Node newNode = new Node(xValue, yValue);
+        if (head == null) {
+            head = newNode;
+        } else {
+            Node current = head;
+            while (current.next != head && current.next != null) {
+                current = current.next;
+            }
+            current.next = newNode;
+        }
+        Node[] newNodesArray = new Node[count + 1];
+        System.arraycopy(nodes, 0, newNodesArray, 0, nodes.length);
+        newNodesArray[count] = newNode;
+        nodes = newNodesArray;
+        count++;
+    }
+
+    private Node[] nodes;
+
+    public LinkedListTabulatedFunction(Node[] nodes) {
+        this.nodes = nodes;
+    }
+    public LinkedListTabulatedFunction Clone() {
+        if (nodes == null) {
+            return new LinkedListTabulatedFunction();
+        }
+
+        Node[] clonedNodes = new Node[nodes.length];
+
+        for (int i = 0; i < nodes.length; i++) {
+            clonedNodes[i] = (Node) nodes[i].clone();
+        }
+
+        LinkedListTabulatedFunction clonedFunction = new LinkedListTabulatedFunction(clonedNodes);
+
+        return clonedFunction;
+    }
+    public boolean[] getNode() {
+        if (nodes == null || nodes.length == 0) {
+            return new boolean[0];
+        }
+
+        boolean[] result = new boolean[nodes.length];
+
+        for (int i = 0; i < nodes.length; i++) {
+            result[i] = nodes[i] != null;
+        }
+        return result;
+    }
 }

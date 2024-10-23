@@ -3,6 +3,7 @@ package ru.ssau.tk.fruktovi.sandboxoop.functions;
 import junit.framework.TestCase;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
 
 class LinkedListTabulatedFunctionTest {
 
@@ -139,11 +140,47 @@ class LinkedListTabulatedFunctionTest {
     }
     @Test
     public void testToString() {
-        double[] xArray = {9.0, 6.7, 4.5, 10.0};
-        double[] yArray = {8.0, 7.0, 2.0, 1.8};
+        double[] xArray = {1.0, 2.0, 4.5, 10.0};
+        double[] yArray = {0.0, 3.0, 2.0, 1.1};
         LinkedListTabulatedFunction linkedList = new LinkedListTabulatedFunction(xArray, yArray);
 
-        String expectedString = "(9.0; 8.0); (6.7; 7.0); (4.5; 2.0); (10.0; 1.8)";
-        Assertions.assertEquals(expectedString, linkedList.toString());
+        String expectedString = "(1.0; 0.0); (2.0; 3.0); (4.5; 2.0); (10.0; 1.1)";
+        assertEquals(expectedString, linkedList.toString());
+    }
+
+    @Test
+    public void testClone1() {
+        LinkedListTabulatedFunction original = new LinkedListTabulatedFunction();
+        LinkedListTabulatedFunction cloned = original.Clone();
+
+        assertNotNull(cloned);
+        assertNotSame(original, cloned);
+        assertArrayEquals(original.getNode(), cloned.getNode());
+    }
+
+    @Test
+    public void testClone2() {
+        double[] xArr1 = {1.0, 2.0, 4.5, 10.0};
+        double[] yArr1 = {0.0, 3.0, 2.0, 1.1};
+        LinkedListTabulatedFunction original = new LinkedListTabulatedFunction(xArr1, yArr1);
+        LinkedListTabulatedFunction cloned = original.Clone();
+
+        assertNotNull(cloned);
+        assertNotSame(original, cloned);
+        assertArrayEquals(original.getNode(), cloned.getNode());
+    }
+
+    @Test
+    public void testCloneNodes() {
+        LinkedListTabulatedFunction originalFunction = new LinkedListTabulatedFunction();
+        originalFunction.add(1.0, 2.0);
+        originalFunction.add(2.0, 4.0);
+        originalFunction.add(3.0, 6.0);
+        LinkedListTabulatedFunction cloned = originalFunction.Clone();
+
+        assertNotNull(cloned);
+        assertNotSame(originalFunction, cloned);
+        assertArrayEquals(originalFunction.getNode(), cloned.getNode());
+
     }
 }
