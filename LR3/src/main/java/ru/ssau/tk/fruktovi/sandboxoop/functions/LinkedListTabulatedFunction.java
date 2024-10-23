@@ -243,45 +243,4 @@ public class LinkedListTabulatedFunction extends AbstractTabulatedFunction imple
         }
         count++;
     }
-    @Override
-    public String toString() {
-        StringBuilder result = new StringBuilder();
-        Node current = head;
-        for (int i = 0; i < count; i++) {
-            result.append(current.toString());
-            if (i < count - 1) {
-                result.append("; "); // Добавляем "; " между точками
-            }
-            current = current.next;
-        }
-        return result.toString();
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        LinkedListTabulatedFunction that = (LinkedListTabulatedFunction) o;
-        if (this.count != that.count) return false;
-        Node thisNode = this.head;
-        Node thatNode = that.head;
-        for (int i = 0; i < count; i++) {
-            if (!thisNode.equals(thatNode)) return false;
-            thisNode = thisNode.next;
-            thatNode = thatNode.next;
-        }
-        return true;
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 1;
-        Node current = head;
-        for (int i = 0; i < count; i++) {
-            hash = 31 * hash + current.hashCode();
-            current = current.next;
-        }
-        return hash;
-    }
-
 }
