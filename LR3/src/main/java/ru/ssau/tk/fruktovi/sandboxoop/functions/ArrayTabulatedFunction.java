@@ -2,7 +2,7 @@ package ru.ssau.tk.fruktovi.sandboxoop.functions;
 
 import java.util.Arrays;
 
-public class ArrayTabulatedFunction extends AbstractTabulatedFunction {
+public class ArrayTabulatedFunction extends AbstractTabulatedFunction implements Insertable, Removable {
 
     private double[] xValues;
     private double[] yValues;
@@ -116,5 +116,98 @@ public class ArrayTabulatedFunction extends AbstractTabulatedFunction {
         }
         return -1;
     }
-}
+    @Override
+    public void insert(double x, double y) {
+        int i = 0;
+        while(getX(i) < x && i < count) ++i;
+        if(getX(i) == x) setY(i, y);
+        else if (i < count){
+            double[] xTempFull = new double[count+1];
+            double[] yTempFull = new double[count+1];
+            System.arraycopy(xValues, 0, xTempFull, 0, i);
+            xTempFull[i] = x;
+            System.arraycopy(xValues, i, xTempFull, i + 1, count - i);
+            xValues = new double[count+1];
+            System.arraycopy(xTempFull, 0, xValues, 0, count + 1);
 
+            System.arraycopy(yValues, 0, yTempFull, 0, i);
+            yTempFull[i] = y;
+            System.arraycopy(yValues, i, yTempFull, i + 1, count - i);
+            yValues = new double[count+1];
+            System.arraycopy(yTempFull, 0, yValues, 0, count + 1);
+            ++count;
+        }
+        else{
+            double[] xTempFull = new double[count+1];
+            double[] yTempFull = new double[count+1];
+            System.arraycopy(xValues, 0, xTempFull, 0, i);
+            xTempFull[i] = x;
+            xValues = new double[count+1];
+            System.arraycopy(xTempFull, 0, xValues, 0, count + 1);
+
+            System.arraycopy(yValues, 0, yTempFull, 0, i);
+            yTempFull[i] = y;
+            yValues = new double[count+1];
+            System.arraycopy(yTempFull, 0, yValues, 0, count + 1);
+            ++count;
+        }
+    }
+
+    @Override
+    public void remove(int index) {
+        if(Double.isNaN(getX(index))){
+            System.out.println("Index doesn't exist");
+            return;
+        }
+        else if (index == count - 1) { --count; return; }
+        double[] xTempFull = new double[count-1];
+        double[] yTempFull = new double[count-1];
+        System.arraycopy(xValues, 0, xTempFull, 0, index);
+        System.arraycopy(xValues, index + 1, xTempFull, index, count - index - 1);
+        System.arraycopy(xTempFull, 0, xValues, 0, count - 1);
+
+        System.arraycopy(yValues, 0, yTempFull, 0, index);
+        System.arraycopy(yValues, index + 1, yTempFull, index, count - index - 1);
+        System.arraycopy(yTempFull, 0, yValues, 0, count - 1);
+        --count;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true; // Сравниваем ссылки
+        if (!(o instanceof ArrayTabulatedFunction)) return false; // Проверка типа
+        ArrayTabulatedFunction other = (ArrayTabulatedFunction) o; // Приведение типа
+
+        return Arrays.equals(this.xValues, other.xValues) && Arrays.equals(this.yValues, other.yValues); // Сравнение массивов
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder builder = new StringBuilder("ArrayTabulatedFunction:\n");
+        for (int i = 0; i < count; i++) {
+            builder.append("x: ").append(xValues[i])
+                    .append(", y: ").append(yValues[i]).append("\n");
+        }
+        return builder.toString();
+    }
+
+    @Override
+    public int hashCode() {
+        int result = Arrays.hashCode(xValues);
+        result = 31 * result + Arrays.hashCode(yValues);
+        return result;
+    }
+
+
+    @Override
+    public ArrayTabulatedFunction clone() {
+        try {
+            ArrayTabulatedFunction cloned = (ArrayTabulatedFunction) super.clone();
+            cloned.xValues = xValues.clone();
+            cloned.yValues = yValues.clone();
+            return cloned;
+        } catch (CloneNotSupportedException e) {
+            throw new AssertionError(); // Не должно случаться
+        }
+    }
+}
