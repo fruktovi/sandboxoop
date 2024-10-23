@@ -137,4 +137,13 @@ class LinkedListTabulatedFunctionTest {
         test.insert(6, 22222);
         Assertions.assertEquals(22222, test.getY(6));
     }
+    @Test
+    public void testToString() {
+        double[] xArray = {9.0, 6.7, 4.5, 10.0};
+        double[] yArray = {8.0, 7.0, 2.0, 1.8};
+        LinkedListTabulatedFunction linkedList = new LinkedListTabulatedFunction(xArray, yArray);
+
+        String expectedString = "(9.0; 8.0); (6.7; 7.0); (4.5; 2.0); (10.0; 1.8)";
+        Assertions.assertEquals(expectedString, linkedList.toString());
+    }
 }

@@ -141,7 +141,7 @@ public class LinkedListTabulatedFunction extends AbstractTabulatedFunction imple
         }
     }
 
-    private Node getNode(int index) {
+    public Node getNode(int index) {
         Node current = head;
         if (index < count / 2) {
             // Если индекс ближе к началу списка
@@ -157,7 +157,7 @@ public class LinkedListTabulatedFunction extends AbstractTabulatedFunction imple
         return current;
     }
 
-    private class Node {
+    static final class Node {
         private Node next;
         private Node prev;
         private double x;
@@ -166,6 +166,35 @@ public class LinkedListTabulatedFunction extends AbstractTabulatedFunction imple
         public Node(double x, double y) {
             this.x = x;
             this.y = y;
+        }
+        @Override
+        public String toString() {
+            return "("+ x+ "; " + y+ ")";
+        }
+
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (o == null || getClass() != o.getClass()) return false;
+
+            Node node = (Node) o;
+
+            return Double.compare(node.x, x) == 0 && Double.compare(node.y, y) == 0;
+        }
+
+        @Override
+        public int hashCode() {
+            int result = 17;
+            long xBits = Double.doubleToLongBits(x);
+            long yBits = Double.doubleToLongBits(y);
+            result = 31 * result + (int) (xBits ^ (xBits >>> 32));
+            result = 31 * result + (int) (yBits ^ (yBits >>> 32));
+            return result;
+        }
+
+        @Override
+        public Object clone() {
+            return new Node(this.x, this.y);
         }
     }
 
