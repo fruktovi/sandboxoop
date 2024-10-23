@@ -24,11 +24,7 @@ public class IdentityFunction implements MathFunction {
     }
 
     @Override
-    public IdentityFunction clone() {
-        try {
-            return (IdentityFunction) super.clone();
-        } catch (CloneNotSupportedException e) {
-            throw new AssertionError(); // Не должно произойти
-        }
+    public IdentityFunction clone(){
+        return new IdentityFunction();
     }
 }
