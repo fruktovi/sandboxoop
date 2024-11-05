@@ -4,6 +4,8 @@ import junit.framework.TestCase;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
+import ru.ssau.tk.fruktovi.sandboxoop.exceptions.DifferentLengthOfArraysException;
+import ru.ssau.tk.fruktovi.sandboxoop.exceptions.ArrayIsNotSortedException;
 
 class LinkedListTabulatedFunctionTest {
 
@@ -182,5 +184,14 @@ class LinkedListTabulatedFunctionTest {
         assertNotSame(originalFunction, cloned);
         assertArrayEquals(originalFunction.getNode(), cloned.getNode());
 
+    }
+    @Test
+    void testDifferentLengthOfArraysException() {
+        double[] xValues = {1.0, 2.0, 3.0};
+        double[] yValues = {2.0, 4.0};
+
+        assertThrows(DifferentLengthOfArraysException.class, () -> {
+            new LinkedListTabulatedFunction(xValues, yValues);
+        });
     }
 }

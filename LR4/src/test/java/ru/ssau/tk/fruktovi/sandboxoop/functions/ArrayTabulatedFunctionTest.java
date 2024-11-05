@@ -1,9 +1,14 @@
 package ru.ssau.tk.fruktovi.sandboxoop.functions;
 
 import static org.junit.jupiter.api.Assertions.*;
+import ru.ssau.tk.fruktovi.sandboxoop.exceptions.InterpolationException;
+import ru.ssau.tk.fruktovi.sandboxoop.exceptions.DifferentLengthOfArraysException;
+import ru.ssau.tk.fruktovi.sandboxoop.exceptions.ArrayIsNotSortedException;
+
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
 
 public class ArrayTabulatedFunctionTest {
 
@@ -18,7 +23,14 @@ public class ArrayTabulatedFunctionTest {
         function = new ArrayTabulatedFunction(xValues, yValues);
     }
 
+    @Test
+    void testConstructorDifferentLengthOfArraysException() {
+        double[] xValues = {1.0, 2.0, 3.0};
+        double[] yValues = {2.0, 4.0};
 
+        assertThrows(DifferentLengthOfArraysException.class,
+                () -> new ArrayTabulatedFunction(xValues, yValues));
+    }
 
     @Test
     public void testConstructorWithMathFunction() {
@@ -150,6 +162,31 @@ public class ArrayTabulatedFunctionTest {
 
         assertEquals(function, clonedFunction);
         assertNotSame(function, clonedFunction);
+    }
+    @Test
+    public void testInterpolateThrowsInterpolationException() {
+        double[] xValues = {1.0, 2.0, 3.0};
+        double[] yValues = {3.0, 2.0, 1.0};
+        ArrayTabulatedFunction function = new ArrayTabulatedFunction(xValues, yValues);
+
+        double xOutOfRange = 0.5;
+
+        assertThrows(InterpolationException.class, () -> {
+            function.interpolate(xOutOfRange, 0);
+        });
+
+        double xOutOfRangeHigh = 3.5;
+        assertThrows(InterpolationException.class, () -> {
+            function.interpolate(xOutOfRangeHigh, 1);
+        });
+    }
+    @Test
+    void testConstructorArrayIsNotSortedException() {
+        double[] xValues = {3.0, 1.0, 2.0};
+        double[] yValues = {6.0, 2.0, 4.0};
+
+        assertThrows(ArrayIsNotSortedException.class,
+                () -> new ArrayTabulatedFunction(xValues, yValues));
     }
 
 }
