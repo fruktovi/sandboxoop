@@ -224,4 +224,12 @@ class LinkedListTabulatedFunctionTest {
         assertThrows(DifferentLengthOfArraysException.class,
                 () -> new LinkedListTabulatedFunction(xValues, yValues));
     }
+    @Test
+    void testConstructorArrayIsNotSortedException() {
+        double[] xValues = {3.0, 1.0, 2.0};
+        double[] yValues = {6.0, 2.0, 4.0};
+
+        assertThrows(ArrayIsNotSortedException.class,
+                () -> new LinkedListTabulatedFunction(xValues, yValues));
+    }
 }
