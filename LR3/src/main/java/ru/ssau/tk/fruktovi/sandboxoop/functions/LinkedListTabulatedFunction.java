@@ -1,5 +1,8 @@
 package ru.ssau.tk.fruktovi.sandboxoop.functions;
 
+import ru.ssau.tk.fruktovi.sandboxoop.exceptions.ArrayIsNotSortedException;
+import ru.ssau.tk.fruktovi.sandboxoop.exceptions.DifferentLengthOfArraysException;
+
 public class LinkedListTabulatedFunction extends AbstractTabulatedFunction implements Insertable,Removable {
     private int count = 0;
     private Node head;
@@ -201,6 +204,14 @@ public class LinkedListTabulatedFunction extends AbstractTabulatedFunction imple
     public LinkedListTabulatedFunction(double[] xValues, double[] yValues) {
         for (int i = 0; i < xValues.length; i++) {
             addNode(xValues[i], yValues[i]);
+        }
+        if (xValues.length != yValues.length) {
+            throw new DifferentLengthOfArraysException("Arrays have different lengths.");
+        }
+        for (int i = 1; i < xValues.length; i++) {
+            if (xValues[i] <= xValues[i - 1]) {
+                throw new ArrayIsNotSortedException("Array is not sorted.");
+            }
         }
     }
 

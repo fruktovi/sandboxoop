@@ -3,6 +3,7 @@ package ru.ssau.tk.fruktovi.sandboxoop.functions;
 import java.util.Arrays;
 import ru.ssau.tk.fruktovi.sandboxoop.exceptions.ArrayIsNotSortedException;
 import ru.ssau.tk.fruktovi.sandboxoop.exceptions.DifferentLengthOfArraysException;
+import ru.ssau.tk.fruktovi.sandboxoop.exceptions.InterpolationException;
 
 public class ArrayTabulatedFunction extends AbstractTabulatedFunction implements Insertable, Removable {
 
@@ -78,8 +79,12 @@ public class ArrayTabulatedFunction extends AbstractTabulatedFunction implements
 
     @Override
     protected double interpolate(double x, int floorIndex) {
+        if (x < xValues[floorIndex] || x > xValues[floorIndex + 1]) {
+            throw new InterpolationException("x is out of interpolation range.");
+        }
 
         return interpolate(x, xValues[floorIndex], xValues[floorIndex + 1], yValues[floorIndex], yValues[floorIndex + 1]);
+
     }
 
     @Override

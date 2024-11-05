@@ -1,6 +1,8 @@
 package ru.ssau.tk.fruktovi.sandboxoop.functions;
 
 import java.util.Arrays;
+import ru.ssau.tk.fruktovi.sandboxoop.exceptions.ArrayIsNotSortedException;
+import ru.ssau.tk.fruktovi.sandboxoop.exceptions.DifferentLengthOfArraysException;
 
 public class ArrayTabulatedFunction extends AbstractTabulatedFunction implements Insertable, Removable {
 
@@ -14,6 +16,22 @@ public class ArrayTabulatedFunction extends AbstractTabulatedFunction implements
         this.count = xValues.length;
         this.xValues = Arrays.copyOf(xValues, count);
         this.yValues = Arrays.copyOf(yValues, count);
+        // Проверка на одинаковую длину массивов
+        if (xValues.length != yValues.length) {
+            throw new DifferentLengthOfArraysException("Arrays have different lengths.");
+        }
+        for (int i = 1; i < xValues.length; i++) {
+            if (xValues[i] <= xValues[i - 1]) {
+                throw new ArrayIsNotSortedException("Array is not sorted.");
+            }
+        }
+        this.xValues = Arrays.copyOf(xValues, count);
+        this.yValues = Arrays.copyOf(yValues, count);
+
+
+
+
+
     }
 
 

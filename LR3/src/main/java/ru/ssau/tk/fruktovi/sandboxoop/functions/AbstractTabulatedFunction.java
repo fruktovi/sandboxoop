@@ -1,6 +1,8 @@
     package ru.ssau.tk.fruktovi.sandboxoop.functions;
 
 
+    import ru.ssau.tk.fruktovi.sandboxoop.exceptions.ArrayIsNotSortedException;
+    import ru.ssau.tk.fruktovi.sandboxoop.exceptions.DifferentLengthOfArraysException;
 
     public abstract class AbstractTabulatedFunction implements TabulatedFunction {
         protected int count;
@@ -17,6 +19,8 @@
         public int getCount() {
             return count;
         }
+
+
 
         @Override
         public double apply(double x) {
