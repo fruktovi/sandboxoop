@@ -186,12 +186,12 @@ class LinkedListTabulatedFunctionTest {
 
     }
     @Test
-    void testDifferentLengthOfArraysException() {
+
+    void testConstructorDifferentLengthOfArraysException() {
         double[] xValues = {1.0, 2.0, 3.0};
         double[] yValues = {2.0, 4.0};
 
-        assertThrows(DifferentLengthOfArraysException.class, () -> {
-            new LinkedListTabulatedFunction(xValues, yValues);
-        });
+        assertThrows(DifferentLengthOfArraysException.class,
+                () -> new LinkedListTabulatedFunction(xValues, yValues));
     }
 }
