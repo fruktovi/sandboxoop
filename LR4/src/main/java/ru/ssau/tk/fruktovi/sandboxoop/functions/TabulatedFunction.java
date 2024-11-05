@@ -1,6 +1,6 @@
 package ru.ssau.tk.fruktovi.sandboxoop.functions;
 
-interface TabulatedFunction extends MathFunction {
+interface TabulatedFunction extends MathFunction, Iterable<Point>{
     int getCount();
     double getX(int index);;
     double getY(int index);

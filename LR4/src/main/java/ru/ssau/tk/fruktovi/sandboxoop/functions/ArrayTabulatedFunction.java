@@ -1,6 +1,9 @@
 package ru.ssau.tk.fruktovi.sandboxoop.functions;
 
 import java.util.Arrays;
+import java.util.Iterator;
+import java.util.NoSuchElementException;
+
 import ru.ssau.tk.fruktovi.sandboxoop.exceptions.ArrayIsNotSortedException;
 import ru.ssau.tk.fruktovi.sandboxoop.exceptions.DifferentLengthOfArraysException;
 import ru.ssau.tk.fruktovi.sandboxoop.exceptions.InterpolationException;
@@ -230,5 +233,29 @@ public class ArrayTabulatedFunction extends AbstractTabulatedFunction implements
                 Arrays.copyOf(this.yValues, this.yValues.length)
         );
         return clone;
+    }
+
+    @Override
+    public Iterator<Point> iterator() {
+        return new Iterator<Point>() {
+            private int i = 0;
+
+            @Override
+            public boolean hasNext() {
+                return i < count;
+            }
+
+            @Override
+            public Point next() {
+                if(!hasNext()){
+                    throw new NoSuchElementException();
+                }
+                Point point = new Point(xValues[i], yValues[i]);
+
+                i++;
+
+                return point;
+            }
+        };
     }
 }

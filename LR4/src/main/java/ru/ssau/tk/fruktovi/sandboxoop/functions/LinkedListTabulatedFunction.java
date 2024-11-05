@@ -3,6 +3,9 @@ package ru.ssau.tk.fruktovi.sandboxoop.functions;
 import ru.ssau.tk.fruktovi.sandboxoop.exceptions.ArrayIsNotSortedException;
 import ru.ssau.tk.fruktovi.sandboxoop.exceptions.DifferentLengthOfArraysException;
 
+import java.util.Iterator;
+import java.util.NoSuchElementException;
+
 public class LinkedListTabulatedFunction extends AbstractTabulatedFunction implements Insertable,Removable {
     private int count = 0;
     private Node head;
@@ -354,5 +357,33 @@ public class LinkedListTabulatedFunction extends AbstractTabulatedFunction imple
             result[i] = nodes[i] != null;
         }
         return result;
+    }
+
+    @Override
+    public Iterator<Point> iterator() {
+        return new Iterator<>() {
+            private Node node = head;
+            private int i = 0;
+
+            @Override
+            public boolean hasNext() {
+                return i < count;
+            }
+
+            @Override
+            public Point next() {
+                if (node == null) {
+                    throw new NoSuchElementException();
+                }
+                Point point = new Point(node.x, node.y);
+                i++;
+                if (hasNext()) {
+                    node = node.next;
+                } else {
+                    node = null;
+                }
+                return point;
+            }
+        };
     }
 }
