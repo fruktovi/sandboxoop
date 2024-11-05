@@ -204,9 +204,6 @@ public class LinkedListTabulatedFunction extends AbstractTabulatedFunction imple
     }
 
     public LinkedListTabulatedFunction(double[] xValues, double[] yValues) {
-        for (int i = 0; i < xValues.length; i++) {
-            addNode(xValues[i], yValues[i]);
-        }
         if (xValues.length != yValues.length) {
             throw new DifferentLengthOfArraysException("Arrays have different lengths.");
         }
@@ -215,6 +212,11 @@ public class LinkedListTabulatedFunction extends AbstractTabulatedFunction imple
                 throw new ArrayIsNotSortedException("Array is not sorted.");
             }
         }
+
+        for (int i = 0; i < xValues.length; i++) {
+            addNode(xValues[i], yValues[i]);
+        }
+
     }
 
     public LinkedListTabulatedFunction(MathFunction source, double xFrom, double xTo, int count) {
