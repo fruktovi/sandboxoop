@@ -10,11 +10,38 @@ import ru.ssau.tk.fruktovi.sandboxoop.exceptions.ArrayIsNotSortedException;
 class LinkedListTabulatedFunctionTest {
 
     @Test
-    void floorIndexOfX() {
-        double[] x = {1, 1.5, 2.5, 10, 11};
-        double[] y = {2, 2, 3, 4, -5};
-        LinkedListTabulatedFunction test = new LinkedListTabulatedFunction(x,y);
-        Assertions.assertEquals(2, test.floorIndexOfX(3.1));
+    void testFloorIndexOfXThrowsIllegalStateException() {
+        LinkedListTabulatedFunction test = new LinkedListTabulatedFunction();
+        // Test when head is null (list is empty)
+        assertThrows(IllegalStateException.class, () -> {
+            test.floorIndexOfX(5.0);
+        });
+    }
+
+    @Test
+    void testFloorIndexOfXThrowsIllegalArgumentException() {
+        LinkedListTabulatedFunction test = new LinkedListTabulatedFunction();
+        // Initialize the list with some values for testing bounds
+        test.insert(3.0, 9.0);
+        test.insert(5.0, 25.0);
+
+        // Test when x is less than the left bound (head.x)
+        assertThrows(IllegalArgumentException.class, () -> {
+            test.floorIndexOfX(2.0);
+        });
+    }
+
+    @Test
+    void testFloorIndexOfXValidIndex() {
+        LinkedListTabulatedFunction test = new LinkedListTabulatedFunction();
+        // Insert elements in the list to test normal functionality
+        test.insert(1.0, 2.0);
+        test.insert(2.0, 4.0);
+        test.insert(3.0, 6.0);
+
+        // Test when x is in a valid range
+        assertEquals(1, test.floorIndexOfX(2.5));
+        assertEquals(0, test.floorIndexOfX(1.5));
     }
 
     @Test
@@ -34,11 +61,14 @@ class LinkedListTabulatedFunctionTest {
     }
 
     @Test
-    void interpolate() {
-        double[] x = {1, 2, 5, 10 ,11};
-        double[] y = {2, 4, 3, 4, -4};
-        LinkedListTabulatedFunction test = new LinkedListTabulatedFunction(x,y);
-        Assertions.assertEquals(44, test.interpolate(5,test.floorIndexOfX(5)));
+    void testInterpolate(){
+
+        double[] xArray = {1.0, 2.0, 4.5, 10.0};
+        double[] yArray = {0.0, 3.0, 2.0, 1.1};
+        LinkedListTabulatedFunction linkedList = new LinkedListTabulatedFunction(xArray, yArray);
+
+        assertEquals(1.26, linkedList.apply(9.0), 0.01);
+        assertEquals(2.25, linkedList.apply(3.0), 0.01);
     }
 
     @Test
