@@ -1,11 +1,13 @@
 package ru.ssau.tk.fruktovi.sandboxoop.functions;
 
-import junit.framework.TestCase;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 import ru.ssau.tk.fruktovi.sandboxoop.exceptions.DifferentLengthOfArraysException;
 import ru.ssau.tk.fruktovi.sandboxoop.exceptions.ArrayIsNotSortedException;
+
+
+import java.util.Iterator;
 
 class LinkedListTabulatedFunctionTest {
 
@@ -231,5 +233,41 @@ class LinkedListTabulatedFunctionTest {
 
         assertThrows(ArrayIsNotSortedException.class,
                 () -> new LinkedListTabulatedFunction(xValues, yValues));
+    }
+
+    @Test
+    void testIteratorWhile() {
+        double[] xArray = {1.0, 2.0, 3.5, 4.0};
+        double[] yArray = {1.0, 2.0, 3.0, 4.0};
+        LinkedListTabulatedFunction tabulatedFunction = new LinkedListTabulatedFunction(xArray, yArray);
+
+        Iterator<Point> iterator = tabulatedFunction.iterator();
+        int index = 0;
+
+        while (iterator.hasNext()) {
+            Point point = iterator.next();
+            assertEquals(xArray[index], point.x, 1e-9);
+            assertEquals(yArray[index], point.y, 1e-9);
+            index++;
+        }
+
+        assertEquals(tabulatedFunction.getCount(), index);
+    }
+
+    @Test
+    void testIteratorForEach() {
+        double[] xArray = {1.0, 2.6, 4.0, 10.0};
+        double[] yArray = {0.0, 3.0, 2.0, 1.0};
+        LinkedListTabulatedFunction tabulatedFunction = new LinkedListTabulatedFunction(xArray, yArray);
+
+        int index = 0;
+
+        for (Point point : tabulatedFunction) {
+            assertEquals(xArray[index], point.x, 1e-9);
+            assertEquals(yArray[index], point.y, 1e-9);
+            index++;
+        }
+
+        assertEquals(tabulatedFunction.getCount(), index);
     }
 }
