@@ -10,6 +10,10 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 
+import java.util.NoSuchElementException;
+import java.util.Iterator;
+
+
 public class ArrayTabulatedFunctionTest {
 
     private double[] xValues;
@@ -187,6 +191,40 @@ public class ArrayTabulatedFunctionTest {
 
         assertThrows(ArrayIsNotSortedException.class,
                 () -> new ArrayTabulatedFunction(xValues, yValues));
+    }
+    @Test
+    public void testIterator() {
+        double[] xValues = {1.0, 2.0, 3.0};
+        double[] yValues = {2.0, 4.0, 6.0};
+
+        ArrayTabulatedFunction function = new ArrayTabulatedFunction(xValues, yValues);
+
+        Iterator<Point> iterator = function.iterator();
+
+        int index = 0;
+        while (iterator.hasNext()) {
+            Point point = iterator.next();
+            assertEquals(xValues[index], point.x);
+            assertEquals(yValues[index], point.y);
+            index++;
+        }
+        assertEquals(xValues.length, index);
+    }
+
+    @Test
+    public void testIteratorNoSuchElementException() {
+        double[] xValues = {1.0, 2.0, 3.0};
+        double[] yValues = {2.0, 4.0, 6.0};
+
+        ArrayTabulatedFunction function = new ArrayTabulatedFunction(xValues, yValues);
+
+        Iterator<Point> iterator = function.iterator();
+
+        while (iterator.hasNext()) {
+            iterator.next();
+        }
+
+        assertThrows(NoSuchElementException.class, iterator::next);
     }
 
 }
