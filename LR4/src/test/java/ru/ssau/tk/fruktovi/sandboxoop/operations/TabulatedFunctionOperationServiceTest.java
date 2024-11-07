@@ -14,8 +14,8 @@ import static org.junit.jupiter.api.Assertions.*;
 public class TabulatedFunctionOperationServiceTest {
     @Test
     void testPointsArrayTabulatedFunction() {
-        double[] xArray = {1.0, 2.0, 3.0, 4.0};
-        double[] yArray = {5.0, 6.0, 7.0, 8.0};
+        double[] xArray = {2.0, 4.0, 6.0, 8.0};
+        double[] yArray = {3.0, 6.0, 9.0, 12.0};
         ArrayTabulatedFunction arrayTabulatedFunction = new ArrayTabulatedFunction(xArray, yArray);
 
         Point[] points = TabulatedFunctionOperationService.asPoints(arrayTabulatedFunction);
@@ -28,10 +28,6 @@ public class TabulatedFunctionOperationServiceTest {
         }
     }
 
-
-
-
-
     @Test
     public void asPointsTest() {
         double[] xValues = {1.0, 2.0, 3.0};
@@ -43,20 +39,21 @@ public class TabulatedFunctionOperationServiceTest {
         assertEquals(3, points.length);
     }
 
+
     @Test
     public void SumTest() {
         TabulatedFunctionFactory factory = new ArrayTabulatedFunctionFactory();
         TabulatedFunctionOperationService service = new TabulatedFunctionOperationService(factory);
 
-        double[] xValues = {1.0, 2.0, 3.0};
-        double[] yValues1 = {1.0, 2.0, 3.0};
-        double[] yValues2 = {4.0, 5.0, 6.0};
+        double[] xValues = {0.5, 1.5, 2.5};
+        double[] yValues1 = {2.5, 4.5, 6.5};
+        double[] yValues2 = {0.5, 1.5, 2.5};
 
         TabulatedFunction f1 = factory.create(xValues, yValues1);
         TabulatedFunction f2 = factory.create(xValues, yValues2);
 
         TabulatedFunction result = service.sum(f1, f2);
-        double[] expectedY = {5.0, 7.0, 9.0};
+        double[] expectedY = {3.0, 6.0, 9.0};
 
         for (int i = 0; i < result.getCount(); i++) {
             assertEquals(expectedY[i], result.getY(i));
@@ -69,15 +66,15 @@ public class TabulatedFunctionOperationServiceTest {
         TabulatedFunctionFactory linkedListFactory = new LinkedListTabulatedFunctionFactory();
         TabulatedFunctionOperationService service = new TabulatedFunctionOperationService(arrayFactory);
 
-        double[] xValues = {1.0, 2.0, 3.0};
-        double[] yValues1 = {5.0, 6.0, 7.0};
-        double[] yValues2 = {1.0, 2.0, 3.0};
+        double[] xValues = {5.0, 10.0, 15.0};
+        double[] yValues1 = {20.0, 30.0, 40.0};
+        double[] yValues2 = {15.0, 20.0, 25.0};
 
         TabulatedFunction f1 = arrayFactory.create(xValues, yValues1);
         TabulatedFunction f2 = linkedListFactory.create(xValues, yValues2);
 
         TabulatedFunction result = service.subtract(f1, f2);
-        double[] expectedY = {4.0, 4.0, 4.0};
+        double[] expectedY = {5.0, 10.0, 15.0};
 
         for (int i = 0; i < result.getCount(); i++) {
             assertEquals(expectedY[i], result.getY(i));
