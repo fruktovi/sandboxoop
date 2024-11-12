@@ -11,8 +11,8 @@ import java.io.IOException;
 
     public class TabulatedFunctionFileWriter {
         public static void main(String[] args){
-            String arrayFunctionLinePath = "output/array function.txt";
-            String linkedListFunctionLinePath = "output/linked list function.txt";
+            String arrayFunctionLinePath = "C:/Users/user/IdeaProjects/sandboxoop/LR5/output/array function.txt";
+            String linkedListFunctionLinePath = "C:/Users/user/IdeaProjects/sandboxoop/LR5/output/linked list function.txt";
 
             try(
                     BufferedWriter arrayWrite = new BufferedWriter(new FileWriter(arrayFunctionLinePath));
