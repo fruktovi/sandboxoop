@@ -5,6 +5,8 @@ import ru.ssau.tk.fruktovi.sandboxoop.exceptions.ArrayIsNotSortedException;
 import ru.ssau.tk.fruktovi.sandboxoop.exceptions.DifferentLengthOfArraysException;
 
 import org.junit.jupiter.api.Test;
+
+import static junit.framework.Assert.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class AbstractTabulatedFunctionTest {
@@ -26,5 +28,16 @@ public class AbstractTabulatedFunctionTest {
         assertThrows(ArrayIsNotSortedException.class, () -> {
             AbstractTabulatedFunction.checkSorted(xValues);
         });
+    }
+
+    @Test
+    void testToString(){
+        double[] xValues = new double[]{1.0, 2.0, 3.0};
+        double[] yValues = new double[]{4.0, 5.0, 6.0};
+        AbstractTabulatedFunction function1 = new LinkedListTabulatedFunction (xValues, yValues);
+
+        String stringLinkedList = "LinkedListTabulatedFunction size = 3\n[1.0; 4.0]\n[2.0; 5.0]\n[3.0; 6.0]\n";
+
+        assertEquals(stringLinkedList, function1.toString());
     }
 }
