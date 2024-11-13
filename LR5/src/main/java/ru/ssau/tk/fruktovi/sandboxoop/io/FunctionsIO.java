@@ -62,4 +62,9 @@ public final class FunctionsIO {
         }
         dataOutputStream.flush();
     }
+    public static void serialize(BufferedOutputStream stream, TabulatedFunction function) throws IOException {
+        ObjectOutputStream objOutputStream = new ObjectOutputStream(stream);
+        objOutputStream.writeObject(function);
+        objOutputStream.flush();
+    }
 }

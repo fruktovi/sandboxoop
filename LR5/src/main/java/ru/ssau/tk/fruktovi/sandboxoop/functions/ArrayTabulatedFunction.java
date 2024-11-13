@@ -7,8 +7,10 @@ import java.util.NoSuchElementException;
 import ru.ssau.tk.fruktovi.sandboxoop.exceptions.ArrayIsNotSortedException;
 import ru.ssau.tk.fruktovi.sandboxoop.exceptions.DifferentLengthOfArraysException;
 import ru.ssau.tk.fruktovi.sandboxoop.exceptions.InterpolationException;
+import java.io.Serializable;
 
 public class ArrayTabulatedFunction extends AbstractTabulatedFunction implements Insertable, Removable {
+    private static final long serialVersionUID = -4763093152598012995L;
 
     private double[] xValues;
     private double[] yValues;

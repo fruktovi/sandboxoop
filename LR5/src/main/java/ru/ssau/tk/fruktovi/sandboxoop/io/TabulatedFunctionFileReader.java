@@ -9,7 +9,7 @@ import java.io.IOException;
 
 public class TabulatedFunctionFileReader {
     public static void main(String[] args){
-        String file = "input/function.txt";
+        String file = "C:/Users/user/IdeaProjects/sandboxoop/LR5/input/function.txt";
         try(
                 FileReader arrayReader = new FileReader(file);
                 FileReader linkedListReader = new FileReader(file);
