@@ -210,11 +210,6 @@ public class LinkedListTabulatedFunction extends AbstractTabulatedFunction imple
         if (xValues.length != yValues.length) {
             throw new DifferentLengthOfArraysException("Arrays have different lengths.");
         }
-        for (int i = 1; i < xValues.length; i++) {
-            if (xValues[i] <= xValues[i - 1]) {
-                throw new ArrayIsNotSortedException("Array is not sorted.");
-            }
-        }
 
         for (int i = 0; i < xValues.length; i++) {
             addNode(xValues[i], yValues[i]);
