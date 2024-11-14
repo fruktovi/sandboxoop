@@ -25,7 +25,6 @@ public class ArrayTabulatedFunction extends AbstractTabulatedFunction implements
         this.count = xValues.length;
         this.xValues = Arrays.copyOf(xValues, count);
         this.yValues = Arrays.copyOf(yValues, count);
-        // Проверка на одинаковую длину массивов
         if (xValues.length != yValues.length) {
             throw new DifferentLengthOfArraysException("Arrays have different lengths.");
         }

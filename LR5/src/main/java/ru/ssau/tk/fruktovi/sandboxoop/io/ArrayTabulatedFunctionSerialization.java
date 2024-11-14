@@ -2,52 +2,44 @@ package ru.ssau.tk.fruktovi.sandboxoop.io;
 
 
 import ru.ssau.tk.fruktovi.sandboxoop.functions.ArrayTabulatedFunction;
+import ru.ssau.tk.fruktovi.sandboxoop.functions.TabulatedFunction;
 import ru.ssau.tk.fruktovi.sandboxoop.operations.TabulatedDifferentialOperator;
 
 import java.io.*;
+import java.nio.file.Paths;
+
 public class ArrayTabulatedFunctionSerialization {
+
     public static void main(String[] args) {
+        String filename = "C:\\Users\\user\\IdeaProjects\\sandboxoop\\LR5\\output\\serialized_array_functions.bin";
 
-        String filename = "C:/Users/user/IdeaProjects/sandboxoop/LR5/output/serialized_array_functions.bin";
+        TabulatedFunction arrayTabulatedFunction =
+                new ArrayTabulatedFunction(new double[]{1.7, 2.8, 6.5}, new double[]{5.0, 8.3, 9.19});
 
+        TabulatedDifferentialOperator differentialOperator = new TabulatedDifferentialOperator();
+        TabulatedFunction firstDerivative = differentialOperator.derive(arrayTabulatedFunction);
+        TabulatedFunction secondDerivative = differentialOperator.derive(firstDerivative);
 
-        double[] xValues = {0, 1, 2, 3, 4, 5};
-        double[] yValues = {0, 1, 4, 9, 16, 25};
-        ArrayTabulatedFunction function = new ArrayTabulatedFunction(xValues, yValues);
-
-
-        TabulatedDifferentialOperator operator = new TabulatedDifferentialOperator();
-        ArrayTabulatedFunction firstDerivative = (ArrayTabulatedFunction) operator.derive(function);
-        ArrayTabulatedFunction secondDerivative = (ArrayTabulatedFunction) operator.derive(firstDerivative);
-
-
-        try (FileOutputStream fileOut = new FileOutputStream(filename);
-             BufferedOutputStream bufferedOut = new BufferedOutputStream(fileOut)) {
-
-            FunctionsIO.serialize(bufferedOut, function);
-            FunctionsIO.serialize(bufferedOut, firstDerivative);
-            FunctionsIO.serialize(bufferedOut, secondDerivative);
-
-        } catch (IOException e) {
-            e.printStackTrace();
+        try (BufferedOutputStream bufferedOutputStream = new BufferedOutputStream(new FileOutputStream(filename))) {
+            FunctionsIO.serialize(bufferedOutputStream, arrayTabulatedFunction);
+            FunctionsIO.serialize(bufferedOutputStream, firstDerivative);
+            FunctionsIO.serialize(bufferedOutputStream, secondDerivative);
+        } catch (IOException ex) {
+            ex.printStackTrace();
         }
 
+        try (BufferedInputStream bufferedInputStream = new BufferedInputStream(new FileInputStream(filename))) {
+            TabulatedFunction deserializedArrayTabulatedFunction = FunctionsIO.deserialize(bufferedInputStream);
+            TabulatedFunction deserializedFirstDerivative = FunctionsIO.deserialize(bufferedInputStream);
+            TabulatedFunction deserializedSecondDerivative = FunctionsIO.deserialize(bufferedInputStream);
 
-        try (FileInputStream fileIn = new FileInputStream(filename);
-             BufferedInputStream bufferedIn = new BufferedInputStream(fileIn)) {
-
-            ArrayTabulatedFunction deserializedFunction = (ArrayTabulatedFunction) FunctionsIO.deserialize(bufferedIn);
-            ArrayTabulatedFunction deserializedFirstDerivative = (ArrayTabulatedFunction) FunctionsIO.deserialize(bufferedIn);
-            ArrayTabulatedFunction deserializedSecondDerivative = (ArrayTabulatedFunction) FunctionsIO.deserialize(bufferedIn);
-
-            // Вывод значений
-            System.out.println("Original Function: \n" + deserializedFunction.toString());
-            System.out.println("First Derivative: \n" + deserializedFirstDerivative.toString());
-            System.out.println("Second Derivative: \n" + deserializedSecondDerivative.toString());
-
-        } catch (IOException | ClassNotFoundException e) {
-            e.printStackTrace();
+            System.out.println("Исходная функция: " + deserializedArrayTabulatedFunction.toString());
+            System.out.println("Первая производная исходной функции: " + deserializedFirstDerivative.toString());
+            System.out.println("Вторая производная исходной функции: " + deserializedSecondDerivative.toString());
+        } catch (IOException | ClassNotFoundException ex) {
+            ex.printStackTrace();
         }
     }
+
 }
 
