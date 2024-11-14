@@ -1,5 +1,6 @@
 package ru.ssau.tk.fruktovi.sandboxoop.functions;
 
+import java.io.Serial;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
@@ -9,8 +10,10 @@ import ru.ssau.tk.fruktovi.sandboxoop.exceptions.DifferentLengthOfArraysExceptio
 import ru.ssau.tk.fruktovi.sandboxoop.exceptions.InterpolationException;
 import java.io.Serializable;
 
-public class ArrayTabulatedFunction extends AbstractTabulatedFunction implements Insertable, Removable {
-    private static final long serialVersionUID = -4763093152598012995L;
+public class ArrayTabulatedFunction extends AbstractTabulatedFunction implements Insertable, Removable, Serializable {
+    @Serial
+    private static final long serialVersionUID = 1204613349216897661L;
+
 
     private double[] xValues;
     private double[] yValues;
