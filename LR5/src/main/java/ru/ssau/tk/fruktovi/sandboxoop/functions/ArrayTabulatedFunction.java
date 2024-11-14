@@ -5,7 +5,7 @@ import java.util.Arrays;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-import ru.ssau.tk.fruktovi.sandboxoop.exceptions.ArrayIsNotSortedException;
+
 import ru.ssau.tk.fruktovi.sandboxoop.exceptions.DifferentLengthOfArraysException;
 import ru.ssau.tk.fruktovi.sandboxoop.exceptions.InterpolationException;
 import java.io.Serializable;
