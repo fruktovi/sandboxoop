@@ -219,7 +219,6 @@ public class LinkedListTabulatedFunction extends AbstractTabulatedFunction imple
         }
 
     }
-
     public LinkedListTabulatedFunction(MathFunction source, double xFrom, double xTo, int count) {
         if (xFrom > xTo) {
             double swap;

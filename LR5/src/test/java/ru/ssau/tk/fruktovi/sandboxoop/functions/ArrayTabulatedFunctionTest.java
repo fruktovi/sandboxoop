@@ -3,7 +3,6 @@ package ru.ssau.tk.fruktovi.sandboxoop.functions;
 import static org.junit.jupiter.api.Assertions.*;
 import ru.ssau.tk.fruktovi.sandboxoop.exceptions.InterpolationException;
 import ru.ssau.tk.fruktovi.sandboxoop.exceptions.DifferentLengthOfArraysException;
-import ru.ssau.tk.fruktovi.sandboxoop.exceptions.ArrayIsNotSortedException;
 
 
 import org.junit.jupiter.api.BeforeEach;

@@ -4,7 +4,6 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 import ru.ssau.tk.fruktovi.sandboxoop.exceptions.DifferentLengthOfArraysException;
-import ru.ssau.tk.fruktovi.sandboxoop.exceptions.ArrayIsNotSortedException;
 
 
 import java.util.Iterator;
