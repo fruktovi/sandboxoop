@@ -29,11 +29,7 @@ public class ArrayTabulatedFunction extends AbstractTabulatedFunction implements
         if (xValues.length != yValues.length) {
             throw new DifferentLengthOfArraysException("Arrays have different lengths.");
         }
-        for (int i = 1; i < xValues.length; i++) {
-            if (xValues[i] <= xValues[i - 1]) {
-                throw new ArrayIsNotSortedException("Array is not sorted.");
-            }
-        }
+
         this.xValues = Arrays.copyOf(xValues, count);
         this.yValues = Arrays.copyOf(yValues, count);
 
