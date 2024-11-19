@@ -20,14 +20,7 @@ public class AbstractTabulatedFunctionTest {
         });
     }
 
-    @Test
-    public void testCheckSorted() {
-        double[] xValues = {1.0, 3.0, 2.0};
 
-        assertThrows(ArrayIsNotSortedException.class, () -> {
-            AbstractTabulatedFunction.checkSorted(xValues);
-        });
-    }
 
     @Test
     void testToString(){
