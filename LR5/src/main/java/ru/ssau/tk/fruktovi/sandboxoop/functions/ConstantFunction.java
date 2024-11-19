@@ -1,6 +1,6 @@
 package ru.ssau.tk.fruktovi.sandboxoop.functions;
 
-public class ConstantFunction {
+public class ConstantFunction implements MathFunction {
     private double constant;
 
     public ConstantFunction(double constant) {
