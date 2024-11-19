@@ -2,21 +2,23 @@ package ru.ssau.tk.fruktovi.sandboxoop.concurrent;
 
 import ru.ssau.tk.fruktovi.sandboxoop.functions.TabulatedFunction;
 
-public class ReadTask implements Runnable {
+public class WriteTask implements Runnable {
 
     private final TabulatedFunction function;
+    private final double value;
 
-    public ReadTask(TabulatedFunction function) {
+    public WriteTask(TabulatedFunction function, double value) {
         this.function = function;
+        this.value = value;
     }
 
     @Override
     public void run() {
         for (int i = 0; i < function.getCount(); ++i) {
             synchronized (function) {
-                System.out.printf("After read: i = %d, x = %f, y = %f\n", i, function.getX(i), function.getY(i));
+                function.setY(i, value);
+                System.out.printf("Writing for index %d complete\n", i);
             }
         }
     }
-
 }
