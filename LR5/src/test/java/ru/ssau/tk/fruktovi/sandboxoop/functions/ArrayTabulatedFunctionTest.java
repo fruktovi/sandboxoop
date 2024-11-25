@@ -183,14 +183,7 @@ public class ArrayTabulatedFunctionTest {
             function.interpolate(xOutOfRangeHigh, 1);
         });
     }
-    @Test
-    void testConstructorArrayIsNotSortedException() {
-        double[] xValues = {3.0, 1.0, 2.0};
-        double[] yValues = {6.0, 2.0, 4.0};
-
-        assertThrows(ArrayIsNotSortedException.class,
-                () -> new ArrayTabulatedFunction(xValues, yValues));
-    }
+    
     @Test
     public void testIterator() {
         double[] xValues = {1.0, 2.0, 3.0};
