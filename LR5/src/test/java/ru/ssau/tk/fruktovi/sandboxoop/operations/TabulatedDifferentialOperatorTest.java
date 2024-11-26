@@ -1,6 +1,8 @@
 package ru.ssau.tk.fruktovi.sandboxoop.operations;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import ru.ssau.tk.fruktovi.sandboxoop.concurrent.SynchronizedTabulatedFunction;
 import ru.ssau.tk.fruktovi.sandboxoop.functions.ArrayTabulatedFunction;
 import ru.ssau.tk.fruktovi.sandboxoop.functions.LinkedListTabulatedFunction;
 import ru.ssau.tk.fruktovi.sandboxoop.functions.TabulatedFunction;
@@ -10,6 +12,21 @@ import ru.ssau.tk.fruktovi.sandboxoop.functions.factory.LinkedListTabulatedFunct
 import static org.junit.jupiter.api.Assertions.*;
 
 class TabulatedDifferentialOperatorTest {
+    private TabulatedFunction tabulatedFunction;
+    private TabulatedDifferentialOperator differentialOperator;
+    private TabulatedFunction baseFunction;
+    private SynchronizedTabulatedFunction synchronizedFunction;
+    private TabulatedFunction derivedFunction;
+
+    private TabulatedFunction createArrayTabulatedFunction() {
+        return new ArrayTabulatedFunction(new double[]{-3, 1.5, 6, 10.5, 15}, new double[]{9, 2.25, 36, 110.25, 225});
+    }
+
+    private TabulatedFunction createLinkedListTabulatedFunction() {
+        return new LinkedListTabulatedFunction(new double[]{-3, 1.5, 6, 10.5, 15}, new double[]{9, 2.25, 36, 110.25, 225});
+    }
+
+        
 
     @Test
     void testConstructor1(){
@@ -46,4 +63,13 @@ class TabulatedDifferentialOperatorTest {
             assertEquals(yValues[i], function.getY(i), 10);
         }
     }
+    @Test
+    void testDeriveSynchronously() {
+        tabulatedFunction = createLinkedListTabulatedFunction();
+        differentialOperator = new TabulatedDifferentialOperator(new LinkedListTabulatedFunctionFactory());
+        TabulatedFunction derivedFunction = differentialOperator.deriveSynchronously(tabulatedFunction);
+
+        assertEquals(12, derivedFunction.apply(6), 0.01);
+    }
+
 }

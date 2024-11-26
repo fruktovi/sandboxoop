@@ -1,5 +1,6 @@
 package ru.ssau.tk.fruktovi.sandboxoop.operations;
 
+import ru.ssau.tk.fruktovi.sandboxoop.concurrent.SynchronizedTabulatedFunction;
 import ru.ssau.tk.fruktovi.sandboxoop.functions.Point;
 import ru.ssau.tk.fruktovi.sandboxoop.functions.TabulatedFunction;
 import ru.ssau.tk.fruktovi.sandboxoop.functions.factory.ArrayTabulatedFunctionFactory;
@@ -39,6 +40,17 @@ public class TabulatedDifferentialOperator implements DifferentialOperator<Tabul
         yValues[points.length-1] = (function.getY(points.length-1) - function.getY(points.length-2))/(function.getX(points.length-1)-function.getX(points.length-2));
 
         return factory.create(xValues, yValues);
+    }
+    public TabulatedFunction deriveSynchronously(TabulatedFunction function) {
+        SynchronizedTabulatedFunction synchronizedTabulatedFunction;
+
+        if (function instanceof SynchronizedTabulatedFunction) {
+            synchronizedTabulatedFunction = (SynchronizedTabulatedFunction) function;
+        } else {
+            synchronizedTabulatedFunction = new SynchronizedTabulatedFunction(function);
+        }
+
+        return synchronizedTabulatedFunction.doSynchronously(this::derive);
     }
 
     @Override

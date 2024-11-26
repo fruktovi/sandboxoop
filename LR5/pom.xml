@@ -29,6 +29,12 @@
       <version>RELEASE</version>
       <scope>test</scope>
     </dependency>
+      <dependency>
+          <groupId>ru.ssau.tk.fruktovi.sandboxoop</groupId>
+          <artifactId>LR2</artifactId>
+          <version>1.0-SNAPSHOT</version>
+          <scope>test</scope>
+      </dependency>
   </dependencies>
 
 </project>
