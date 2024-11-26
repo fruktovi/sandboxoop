@@ -14,6 +14,7 @@ public class SynchronizedTabulatedFunctionTest {
 
     private SynchronizedTabulatedFunction synchronizedFunction;
 
+
     @BeforeEach
     public void setUp() {
         double[] xValues = {1.0, 2.0, 3.0};
@@ -86,4 +87,23 @@ public class SynchronizedTabulatedFunctionTest {
         assertEquals(3.0, iterator.next().getX());
         assertFalse(iterator.hasNext());
     }
+    @Test
+    public void testIntegerOperation() {
+        SynchronizedTabulatedFunction.Operation<Integer> intOperation = (function) -> 42;
+        Integer result = synchronizedFunction.doSynchronously(intOperation);
+        assertEquals(42, result);
+    }
+    @Test
+    public void testStringOperation() {
+        SynchronizedTabulatedFunction.Operation<String> stringOperation = (function) -> "Hello, World!";
+        String result = synchronizedFunction.doSynchronously(stringOperation);
+        assertEquals("Hello, World!", result);
+    }
+    @Test
+    public void testCustomTypeOperation() {
+        SynchronizedTabulatedFunction.Operation<Double> doubleOperation = (function) -> 3.14159;
+        Double result = synchronizedFunction.doSynchronously(doubleOperation);
+        assertEquals(3.14159, result, 0.00001);
+    }
+
 }

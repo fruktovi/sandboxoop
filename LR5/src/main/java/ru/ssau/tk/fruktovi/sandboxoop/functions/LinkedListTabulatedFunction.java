@@ -258,7 +258,7 @@ public class LinkedListTabulatedFunction extends AbstractTabulatedFunction imple
         }
         count++;
     }
-    /*@Override
+    @Override
     public String toString() {
         StringBuilder result = new StringBuilder();
         Node current = head;
@@ -270,7 +270,7 @@ public class LinkedListTabulatedFunction extends AbstractTabulatedFunction imple
             current = current.next;
         }
         return result.toString();
-    }*/
+    }
 
     @Override
     public boolean equals(Object o) {
