@@ -65,6 +65,15 @@ public class SynchronizedTabulatedFunction implements TabulatedFunction {
     }
 
     @Override
+    public synchronized void insert(double x, double y){
+        function.insert(x, y);
+    }
+    @Override
+    public synchronized void remove(int index){
+        function.remove(index);
+    }
+
+    @Override
     public Iterator<Point> iterator() {
         synchronized (function) {
             Point[] points = TabulatedFunctionOperationService.asPoints(function);
