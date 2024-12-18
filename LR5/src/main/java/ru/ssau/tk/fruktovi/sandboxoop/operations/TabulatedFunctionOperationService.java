@@ -19,11 +19,11 @@ public class TabulatedFunctionOperationService{
         this.factory = new ArrayTabulatedFunctionFactory();
     }
 
-    public TabulatedFunctionFactory FactoryGetter(){
+    public TabulatedFunctionFactory getFactory(){
         return factory;
     }
 
-    public void FactorySetter(TabulatedFunctionFactory factory){
+    public void setFactory(TabulatedFunctionFactory factory){
         this.factory = factory;
     }
     private interface BiOperation {
@@ -73,5 +73,13 @@ public class TabulatedFunctionOperationService{
     // Метод вычитания функций
     public TabulatedFunction subtract(TabulatedFunction a, TabulatedFunction b) {
         return doOperation(a, b, (u, v) -> u - v);
+    }
+    // Метод умножения функций
+    public TabulatedFunction multiplication(TabulatedFunction a, TabulatedFunction b) {
+        return doOperation(a, b, (u, v) -> u * v);
+    }
+    // Метод деления функций
+    public TabulatedFunction division(TabulatedFunction a, TabulatedFunction b) {
+        return doOperation(a, b, (u, v) -> u / v);
     }
 }
