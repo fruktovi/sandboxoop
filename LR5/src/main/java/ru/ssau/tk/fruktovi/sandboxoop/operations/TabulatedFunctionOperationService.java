@@ -24,6 +24,7 @@ public class TabulatedFunctionOperationService{
     }
 
     public void setFactory(TabulatedFunctionFactory factory){
+
         this.factory = factory;
     }
     private interface BiOperation {
