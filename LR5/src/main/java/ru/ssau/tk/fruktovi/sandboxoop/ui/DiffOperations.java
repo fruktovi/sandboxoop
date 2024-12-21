@@ -214,7 +214,7 @@ public class DiffOperations extends JDialog {
     private void createFunction() {
         TabulatedFunctionFactory selectedFactory = operationService.getFactory();
 
-        function.TabulatedFunction createdFunction = null;
+        TabulatedFunction createdFunction = null;
 
         if (selectedFactory instanceof ArrayTabulatedFunctionFactory) {
             TableController arraysWindow = new TableController(owner, operationService.getFactory());

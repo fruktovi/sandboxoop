@@ -96,6 +96,6 @@ public class MainWindowController extends JFrame {
     }
 
     private void openDifferentialOperations() {
-        new DiffOperations(this, new TabulatedDifferentialOperator(factoryService.factoryGetter()));
+        new DiffOperations(this, new TabulatedDifferentialOperator(factoryService.getFactory()));
     }
 }

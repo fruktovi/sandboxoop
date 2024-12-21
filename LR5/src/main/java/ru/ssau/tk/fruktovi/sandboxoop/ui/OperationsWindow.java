@@ -214,13 +214,13 @@ public class OperationsWindow extends JDialog {
         try {
             switch (operation) {
                 case 1:
-                    resultFunction = operationService.add(firstFunction, secondFunction);
+                    resultFunction = operationService.sum(firstFunction, secondFunction);
                     break;
                 case 2:
                     resultFunction = operationService.subtract(firstFunction, secondFunction);
                     break;
                 case 3:
-                    resultFunction = operationService.multiply(firstFunction, secondFunction);
+                    resultFunction = operationService.multiplication(firstFunction, secondFunction);
                     break;
                 case 4:
                     resultFunction = operationService.division(firstFunction, secondFunction);
@@ -233,17 +233,17 @@ public class OperationsWindow extends JDialog {
     }
 
     private void createFunction(int operand){
-        TabulatedFunctionFactory selectedFactory = operationService.factoryGetter();
+        TabulatedFunctionFactory selectedFactory = operationService.getFactory();
 
         TabulatedFunction createdFunction = null;
 
         if (selectedFactory instanceof ArrayTabulatedFunctionFactory) {
-            TableController arraysWindow = new TableController(owner, operationService.factoryGetter());
+            TableController arraysWindow = new TableController(owner, operationService.getFactory());
             arraysWindow.setVisible(true);
             createdFunction = arraysWindow.getTabulatedFunction();
 
         } else if (selectedFactory instanceof LinkedListTabulatedFunctionFactory) {
-            MathController mathWindow = new MathController(owner, operationService.factoryGetter());
+            MathController mathWindow = new MathController(owner, operationService.getFactory());
             mathWindow.setVisible(true);
             createdFunction = mathWindow.getTabulatedFunction();
         }
