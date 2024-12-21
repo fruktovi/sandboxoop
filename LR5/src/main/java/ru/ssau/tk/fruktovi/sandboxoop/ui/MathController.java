@@ -49,7 +49,7 @@ public class MathController extends JDialog {
                 g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
                         RenderingHints.VALUE_ANTIALIAS_ON);
 
-                GradientPaint gp = new GradientPaint(200, 0, new Color(237, 199, 183), 0, getHeight(), new Color(172, 59, 97)); // Нижняя часть фона (более светлый серый)
+                GradientPaint gp = new GradientPaint(200, 0, new Color(0x435565), 0, getHeight(), new Color(0x435565));
 
                 g2d.setPaint(gp);
                 g2d.fillRect(0, 0, getWidth(), getHeight());
@@ -57,14 +57,18 @@ public class MathController extends JDialog {
         };
 
         JLabel functionLabel = new JLabel("Выберите функцию:");
+        functionLabel.setForeground(new Color(0x636D7D));
         functionComboBox = new JComboBox<>(functionMap.keySet().toArray(new String[0]));
         JLabel leftBoundLabel = new JLabel("Левая граница:");
+        leftBoundLabel.setForeground(new Color(0x636D7D));
         leftBoundField = new JTextField();
         ((AbstractDocument) leftBoundField.getDocument()).setDocumentFilter(new DoubleNum());
         JLabel rightBoundLabel = new JLabel("Правая граница:");
+        rightBoundLabel.setForeground(new Color(0x636D7D));
         rightBoundField = new JTextField();
         ((AbstractDocument) rightBoundField.getDocument()).setDocumentFilter(new DoubleNum());
         JLabel pointsCountLabel = new JLabel("Количество точек:");
+        pointsCountLabel.setForeground(new Color(0x636D7D));
         pointsCountField = new JTextField();
         ((AbstractDocument) pointsCountField.getDocument()).setDocumentFilter(new IntNum());
 
@@ -77,7 +81,7 @@ public class MathController extends JDialog {
         panel.add(pointsCountLabel);
         panel.add(pointsCountField);
 
-        JButton createButton = new RoundedButton("создать", new Color(172, 59, 97));
+        JButton createButton = new RoundedButton("создать", new Color(0x636D7D));
         createButton.addActionListener(new CreateFunctionListener());
 
         add(panel, BorderLayout.CENTER);
@@ -103,8 +107,17 @@ public class MathController extends JDialog {
             setContentAreaFilled(false);
             setFocusPainted(false);
             setForeground(textColor);
-            setBackground(new Color(238, 226, 220));
+            setBackground(new Color(0xCCDBE2));
             setFont(new Font("MerriWeather", Font.PLAIN, 16));
+        }
+
+
+        @Override
+        protected void paintComponent(Graphics g) {
+            Graphics2D g2d = (Graphics2D) g;
+            g2d.setColor(getBackground());
+            g2d.fillRoundRect(0, 0, getWidth(), getHeight(), 15, 15);
+            super.paintComponent(g);
         }
     }
 
@@ -148,3 +161,4 @@ public class MathController extends JDialog {
         return tabulatedFunction;
     }
 }
+
