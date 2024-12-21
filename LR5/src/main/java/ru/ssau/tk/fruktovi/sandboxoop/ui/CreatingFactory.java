@@ -27,21 +27,24 @@ public class CreatingFactory extends JDialog {
                 g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
                         RenderingHints.VALUE_ANTIALIAS_ON);
 
-                GradientPaint gp = new GradientPaint(200, 0, new Color(237, 199, 183), 0, getHeight(), new Color(172, 59, 97)); // Нижняя часть фона (более светлый серый)
+                GradientPaint gp = new GradientPaint(200, 0, new Color(67, 85, 101), 0, getHeight(), new Color(67, 85, 101));
 
                 g2d.setPaint(gp);
                 g2d.fillRect(0, 0, getWidth(), getHeight());
             }
         };
 
-        JRadioButton arrayFactoryButton = new JRadioButton("Фабрика на основе массива", factoryService.getFactory() instanceof ArrayTabulatedFunctionFactory);
-        JRadioButton listFactoryButton = new JRadioButton("Фабрика на основе связного списка", factoryService.getFactory() instanceof LinkedListTabulatedFunctionFactory);
+        JRadioButton arrayFactoryButton = new JRadioButton("<html><font color='#636D7D'>Фабрика на основе массива</font></html>",
+                factoryService.getFactory() instanceof ArrayTabulatedFunctionFactory);
+        JRadioButton listFactoryButton = new JRadioButton("<html><font color='#636D7D'>Фабрика на основе связного списка</font></html>",
+                factoryService.getFactory() instanceof LinkedListTabulatedFunctionFactory);
 
         ButtonGroup group = new ButtonGroup();
         group.add(arrayFactoryButton);
         group.add(listFactoryButton);
 
-        JButton saveButton = new JButton("Сохранить");
+        JButton saveButton = new JButton("<html><font color='#636D7D'>Сохранить</font></html>");
+        saveButton.setBackground(new Color(204, 219, 226));
         saveButton.addActionListener(_ -> {
             if (arrayFactoryButton.isSelected()) {
                 factoryService.setFactory(new ArrayTabulatedFunctionFactory());
