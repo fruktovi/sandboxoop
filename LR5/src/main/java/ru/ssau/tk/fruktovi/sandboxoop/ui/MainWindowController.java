@@ -21,7 +21,7 @@ public class MainWindowController extends JFrame {
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        getContentPane().setBackground(new Color(237, 199, 183));
+        getContentPane().setBackground(new Color(0x435565));
 
         factoryService = new TabulatedFunctionOperationService();
         setLayout(new BorderLayout());
@@ -31,20 +31,20 @@ public class MainWindowController extends JFrame {
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
                 Graphics2D g2d = (Graphics2D) g;
-                GradientPaint gp = new GradientPaint(200, 0, new Color(237, 199, 183), 0, getHeight(), new Color(172, 59, 97));
+                GradientPaint gp = new GradientPaint(0, 0, new Color(0x435565), 0, getHeight(), new Color(0x435565));
                 g2d.setPaint(gp);
                 g2d.fillRect(0, 0, getWidth(), getHeight());
             }
         };
         buttonPanel.setLayout(new GridLayout(5, 1, 10, 10));  // Сетка 5 на 1 с отступами
 
-        JButton settingsButton = new RoundedButton("Открыть настройки", new Color(172, 59, 97));
+        JButton settingsButton = new RoundedButton("Открыть настройки", new Color(0x636D7D));
         settingsButton.addActionListener(_ -> openSettingsWindow());
 
-        JButton operationsButton = new RoundedButton("Элементарные операции с функциями", new Color(172, 59, 97));
+        JButton operationsButton = new RoundedButton("Элементарные операции с функциями", new Color(0x636D7D));
         operationsButton.addActionListener(_ -> openOperationsWindow());
 
-        JButton differentialOperation = new RoundedButton("Операция дифференцирования над функцией", new Color(172, 59, 97));
+        JButton differentialOperation = new RoundedButton("Операция дифференцирования над функцией", new Color(0x636D7D));
         differentialOperation.addActionListener(_ -> openDifferentialOperations());
 
         buttonPanel.add(settingsButton);
@@ -70,7 +70,7 @@ public class MainWindowController extends JFrame {
             setContentAreaFilled(false);
             setFocusPainted(false);
             setForeground(textColor);
-            setBackground(new Color(238, 226, 220));
+            setBackground(new Color(0xCCDBE2));
             setFont(new Font("MerriWeather", Font.PLAIN, 16));
         }
 
@@ -82,7 +82,6 @@ public class MainWindowController extends JFrame {
             super.paintComponent(g);
         }
     }
-
 
     private void openSettingsWindow() {
         if (settingsWindow == null || !settingsWindow.isShowing()) {
