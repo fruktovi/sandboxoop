@@ -35,7 +35,7 @@ public class TableController extends JDialog {
                 g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
                         RenderingHints.VALUE_ANTIALIAS_ON);
 
-                GradientPaint gp = new GradientPaint(200, 0, new Color(237, 199, 183), 0, getHeight(), new Color(172, 59, 97)); // Нижняя часть фона (более светлый серый)
+                GradientPaint gp = new GradientPaint(0, 0, new Color(0x435565), 0, getHeight(), new Color(0x435565)); // Нижняя часть фона (более светлый серый)
 
                 g2d.setPaint(gp);
                 g2d.fillRect(0, 0, getWidth(), getHeight());
@@ -45,8 +45,9 @@ public class TableController extends JDialog {
         setLayout(new BorderLayout());
         gradientPanel.setLayout(new FlowLayout());
         JLabel pointCountLabel = new JLabel("Количество точек:");
+        pointCountLabel.setForeground(new Color(0xCCDBE2));
         pointCount = new JTextField(10);
-        JButton createTableButton = new RoundedButton("добавить", new Color(172, 59, 97));
+        JButton createTableButton = new RoundedButton("добавить", new Color(0xCCDBE2));
         gradientPanel.add(pointCountLabel);
         gradientPanel.add(pointCount);
         gradientPanel.add(createTableButton);
@@ -58,7 +59,7 @@ public class TableController extends JDialog {
         tablePanel.setLayout(new BorderLayout());
         tablePanel.add(scrollPane, BorderLayout.CENTER);
 
-        JButton createFunctionButton = new RoundedButton("Создать", new Color(172, 59, 97));
+        JButton createFunctionButton = new RoundedButton("Создать функцию", new Color(0xCCDBE2));
         JPanel buttonPanel = new JPanel(){
             @Override
             protected void paintComponent(Graphics g) {
@@ -68,7 +69,7 @@ public class TableController extends JDialog {
                 g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
                         RenderingHints.VALUE_ANTIALIAS_ON);
 
-                GradientPaint gp = new GradientPaint(200, 0, new Color(237, 199, 183), 0, getHeight(), new Color(172, 59, 97)); // Нижняя часть фона (более светлый серый)
+                GradientPaint gp = new GradientPaint(0, 0, new Color(0x435565), 0, getHeight(), new Color(0x435565)); // Нижняя часть фона (более светлый серый)
 
                 g2d.setPaint(gp);
                 g2d.fillRect(0, 0, getWidth(), getHeight());

@@ -9,6 +9,7 @@ import ru.ssau.tk.fruktovi.sandboxoop.operations.TabulatedDifferentialOperator;
 import ru.ssau.tk.fruktovi.sandboxoop.ui.InputThings.Cell;
 
 import javax.swing.*;
+import javax.swing.border.TitledBorder;
 import javax.swing.event.TableModelEvent;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
@@ -35,6 +36,7 @@ public class DiffOperations extends JDialog {
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLayout(new BorderLayout());
 
+
         firstTableModel = new DefaultTableModel(new Object[]{"x", "y"}, 0);
         resultTableModel = new DefaultTableModel(new Object[]{"x", "y"}, 0);
 
@@ -43,7 +45,13 @@ public class DiffOperations extends JDialog {
 
         JPanel firstFunctionPanel = createFunctionPanel(functionTable,
                 _ -> createFunction(), _ -> loadFunction(), _ -> saveFunction(1));
+        firstFunctionPanel.setBorder(BorderFactory.createTitledBorder("Функция"));
+        TitledBorder border = (TitledBorder) firstFunctionPanel.getBorder();
+        border.setTitleColor(new Color(0xCCDBE2));
         JPanel resultFunctionPanel = createResultPanel();
+
+
+
 
         JPanel operationPanel = new JPanel(){
             @Override
@@ -54,13 +62,14 @@ public class DiffOperations extends JDialog {
                 g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
                         RenderingHints.VALUE_ANTIALIAS_ON);
 
-                GradientPaint gp = new GradientPaint(200, 0, new Color(237, 199, 183), 0, getHeight(), new Color(172, 59, 97)); // Нижняя часть фона (более светлый серый)
+                GradientPaint gp = new GradientPaint(0, 0, new Color(0x435565), 0, getHeight(), new Color(0x435565)); // Нижняя часть фона (более светлый серый)
 
                 g2d.setPaint(gp);
                 g2d.fillRect(0, 0, getWidth(), getHeight());
             }
         };
         operationPanel.setLayout(new GridLayout(1, 1));
+
 
         JButton differentiateButton = createStyledButton("Дифференцировать");
         differentiateButton.addActionListener(_ -> performOperation());
@@ -75,7 +84,7 @@ public class DiffOperations extends JDialog {
                 g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
                         RenderingHints.VALUE_ANTIALIAS_ON);
 
-                GradientPaint gp = new GradientPaint(200, 0, new Color(237, 199, 183), 0, getHeight(), new Color(172, 59, 97)); // Нижняя часть фона (более светлый серый)
+                GradientPaint gp = new GradientPaint(0, 0, new Color(0xCCDBE2), 0, getHeight(), new Color(0xCCDBE2)); // Нижняя часть фона (более светлый серый)
 
                 g2d.setPaint(gp);
                 g2d.fillRect(0, 0, getWidth(), getHeight());
@@ -90,13 +99,7 @@ public class DiffOperations extends JDialog {
     }
 
     private JPanel createFunctionPanel(JTable table, ActionListener createListener, ActionListener loadListener, ActionListener saveListener) {
-        JPanel panel = new JPanel();
-        panel.setLayout(new BorderLayout());
-
-        JScrollPane scrollPane = new JScrollPane(table);
-        panel.add(scrollPane, BorderLayout.CENTER);
-
-        JPanel buttonPanel = new JPanel(new GridBagLayout()){
+        JPanel panel = new JPanel() {
             @Override
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
@@ -105,8 +108,28 @@ public class DiffOperations extends JDialog {
                 g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
                         RenderingHints.VALUE_ANTIALIAS_ON);
 
-                GradientPaint gp = new GradientPaint(200, 0, new Color(237, 199, 183), 0, getHeight(), new Color(172, 59, 97)); // Нижняя часть фона (более светлый серый)
+                GradientPaint gp = new GradientPaint(0, 0, new Color(0x435565), 0, getHeight(), new Color(0x435565));
+                g2d.setPaint(gp);
+                g2d.fillRect(0, 0, getWidth(), getHeight());
+            }
+        };
+        panel.setLayout(new BorderLayout());
+        panel.setBorder(BorderFactory.createTitledBorder( "Функция"));
 
+
+        JScrollPane scrollPane = new JScrollPane(table);
+        panel.add(scrollPane, BorderLayout.CENTER);
+
+        JPanel buttonPanel = new JPanel(new GridBagLayout()) {
+            @Override
+            protected void paintComponent(Graphics g) {
+                super.paintComponent(g);
+                Graphics2D g2d = (Graphics2D) g;
+
+                g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
+                        RenderingHints.VALUE_ANTIALIAS_ON);
+
+                GradientPaint gp = new GradientPaint(0, 0, new Color(0x435565), 0, getHeight(), new Color(0x435565));
                 g2d.setPaint(gp);
                 g2d.fillRect(0, 0, getWidth(), getHeight());
             }
@@ -130,7 +153,7 @@ public class DiffOperations extends JDialog {
     }
 
     private JButton createStyledButton(String text) {
-        JButton button = new RoundedButton(text, new Color(172, 59, 97));
+        JButton button = new RoundedButton(text, new Color(0xCCDBE2));
         button.setFocusPainted(false);
         button.setCursor(new Cursor(Cursor.HAND_CURSOR));
         return button;
@@ -152,7 +175,7 @@ public class DiffOperations extends JDialog {
                 g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
                         RenderingHints.VALUE_ANTIALIAS_ON);
 
-                GradientPaint gp = new GradientPaint(200, 0, new Color(237, 199, 183), 0, getHeight(), new Color(237, 199, 183));
+                GradientPaint gp = new GradientPaint(0, 0, new Color(0x435565), 0, getHeight(), new Color(0x435565));
 
                 g2d.setPaint(gp);
                 g2d.fillRect(0, 0, getWidth(), getHeight());
@@ -160,6 +183,9 @@ public class DiffOperations extends JDialog {
         };
         panel.setLayout(new BorderLayout());
         panel.setBorder(BorderFactory.createTitledBorder( "Результат"));
+        TitledBorder border = (TitledBorder) panel.getBorder();
+        border.setTitleColor(new Color(0xCCDBE2));
+
 
         JScrollPane scrollPane = new JScrollPane(resultFunctionTable);
         panel.add(scrollPane, BorderLayout.CENTER);
@@ -278,7 +304,7 @@ public class DiffOperations extends JDialog {
             setContentAreaFilled(false);
             setFocusPainted(false);
             setForeground(textColor);
-            setBackground(new Color(238, 226, 220));
+            setBackground(new Color(0xCCDBE2));
             setFont(new Font("MerriWeather", Font.PLAIN, 16));
         }
     }

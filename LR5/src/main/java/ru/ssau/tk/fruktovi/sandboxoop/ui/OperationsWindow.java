@@ -61,7 +61,7 @@ public class OperationsWindow extends JDialog {
                 g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
                         RenderingHints.VALUE_ANTIALIAS_ON);
 
-                GradientPaint gp = new GradientPaint(200, 0, new Color(67, 85, 101), 0, getHeight(), new Color(67, 85, 101));
+                GradientPaint gp = new GradientPaint(0, 0, new Color(0x435565), 0, getHeight(), new Color(0x435565));
 
                 g2d.setPaint(gp);
                 g2d.fillRect(0, 0, getWidth(), getHeight());
